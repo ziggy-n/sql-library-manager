@@ -1,0 +1,32 @@
+extends layout
+
+block content
+  h1 Books
+
+  include search-form
+  
+  p
+    a.button(href='/books/new') Create New Book
+
+  table
+    thread
+      tr
+        th Title
+        th Author
+        th Genre
+        th Year
+    tbody
+      each book in books
+        tr
+          td
+            a(href=`/books/${book.id}`) #{book.title}
+          td #{book.author}
+          td #{book.genre}
+          td #{book.year}
+
+  div
+    ul#bttnList
+      each val in bttns
+        li#pageBttn
+          form(action=`books?page=${val}`, method="post")
+            input(type='submit', value=`${val}`) 
